@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #f4f2ff;
+  --surface: #ffffff;
+  --surface-2: #ece9fb;
+  --ink: #1d1a33;
+  --muted: #5d5878;
+  --line: #d9d4f2;
+  --primary: #5b3fd6;
+  --primary-ink: #ffffff;
+  --primary-soft: #e6e0ff;
+  --good: #11804a;
+  --good-soft: #dcf5e8;
+  --bad: #c42b3c;
+  --bad-soft: #fde3e6;
+  --warn: #9a5b00;
+  --warn-soft: #fff1d6;
+  --gold: #b88200;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14121f;
+    --surface: #1e1b2e;
+    --surface-2: #29253d;
+    --ink: #f1eefc;
+    --muted: #b3acd0;
+    --line: #3a3554;
+    --primary: #9b87ff;
+    --primary-ink: #14121f;
+    --primary-soft: #2e2754;
+    --good: #4fd394;
+    --good-soft: #163527;
+    --bad: #ff7b8a;
+    --bad-soft: #3d1a20;
+    --warn: #ffc457;
+    --warn-soft: #3a2c10;
+    --gold: #ffd257;
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-primary: var(--primary);
+  --color-primary-ink: var(--primary-ink);
+  --color-primary-soft: var(--primary-soft);
+  --color-good: var(--good);
+  --color-good-soft: var(--good-soft);
+  --color-bad: var(--bad);
+  --color-bad-soft: var(--bad-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-gold: var(--gold);
+  --font-sans: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR",
+    "Segoe UI", sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  word-break: keep-all;
+}
+
+:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* ── 게임 연출: 짧게 (FR-013) ── */
+@keyframes pop {
+  0% { transform: scale(0.6); opacity: 0; }
+  60% { transform: scale(1.12); opacity: 1; }
+  100% { transform: scale(1); }
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+@keyframes rise {
+  0% { transform: translateY(8px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+@keyframes float-up {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-28px); opacity: 0; }
+}
+@keyframes badge-spin {
+  0% { transform: rotate(-20deg) scale(0.4); opacity: 0; }
+  70% { transform: rotate(8deg) scale(1.15); opacity: 1; }
+  100% { transform: rotate(0) scale(1); }
+}
+
+.anim-pop { animation: pop 320ms ease-out both; }
+.anim-shake { animation: shake 280ms ease-in-out both; }
+.anim-rise { animation: rise 240ms ease-out both; }
+.anim-float-up { animation: float-up 900ms ease-out both; }
+.anim-badge { animation: badge-spin 600ms ease-out both; }
+
+/* 모션 줄이기 설정을 존중한다 */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
