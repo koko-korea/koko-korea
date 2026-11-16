@@ -130,3 +130,62 @@ export interface LeaderboardData {
   entries: LeaderboardEntry[];
   submittedCount: number;
 }
+
+// ───────────────────────── 교사용 ─────────────────────────
+
+export type QuizStatus = "draft" | "published" | "closed";
+
+export interface TeacherQuizSummary {
+  id: string;
+  title: string;
+  status: QuizStatus;
+  joinCode: string;
+  isSample: boolean;
+  participantCount: number;
+  submittedCount: number;
+  updatedAt: number;
+}
+
+export interface TeacherQuizDetail {
+  id: string;
+  status: QuizStatus;
+  joinCode: string;
+  isSample: boolean;
+  timeLimitSeconds: number;
+  participantCount: number;
+  content: import("@/domain/quiz-content").QuizContent;
+  issues: import("@/domain/quiz-content").ContentIssue[];
+}
+
+export interface ConceptAccuracy {
+  conceptId: string;
+  name: string;
+  /** 최초 풀이 제출 응답 수(분모) */
+  responses: number;
+  correct: number;
+  /** 0~100, 응답이 없으면 null(데이터 없음) */
+  rate: number | null;
+  originalRate: number | null;
+  variantRate: number | null;
+}
+
+export interface ParticipantRow {
+  id: string;
+  nickname: string;
+  status: "in_progress" | "submitted";
+  answered: number;
+  total: number;
+  units: number;
+  lastActivityAt: number;
+  hidden: boolean;
+}
+
+export interface TeacherAnalytics {
+  quiz: { id: string; title: string; status: QuizStatus; joinCode: string; questionCount: number };
+  participantCount: number;
+  inProgressCount: number;
+  submittedCount: number;
+  concepts: ConceptAccuracy[];
+  participants: ParticipantRow[];
+  leaderboard: LeaderboardEntry[];
+}

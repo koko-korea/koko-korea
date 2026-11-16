@@ -97,6 +97,12 @@ CREATE TABLE IF NOT EXISTS concept_mastery (
   PRIMARY KEY (participation_id, concept_id)
 );
 
+CREATE TABLE IF NOT EXISTS teacher_sessions (
+  token_hash TEXT PRIMARY KEY,
+  created_at INTEGER NOT NULL,
+  expires_at INTEGER NOT NULL
+);
+
 CREATE INDEX IF NOT EXISTS idx_deliveries_participation ON question_deliveries(participation_id);
 CREATE INDEX IF NOT EXISTS idx_answers_participation ON answer_attempts(participation_id, attempt_type);
 CREATE INDEX IF NOT EXISTS idx_participations_set ON participations(quiz_set_id, status);

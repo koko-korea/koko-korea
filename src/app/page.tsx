@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { JoinCodeForm } from "@/components/join/join-code-form";
 import { Card, Screen } from "@/components/ui";
 import { SAMPLE_JOIN_CODE } from "@/server/seed/sample-quiz";
@@ -20,6 +21,11 @@ export default function Home() {
 
         <p className="text-center text-sm text-muted">
           체험용 견본 퀴즈 코드: <strong className="font-mono text-ink">{SAMPLE_JOIN_CODE}</strong>
+        </p>
+        <p className="text-center text-sm">
+          <Link href="/teacher" className="text-muted underline">
+            선생님이신가요? 교사용 화면
+          </Link>
         </p>
       </div>
     </Screen>
