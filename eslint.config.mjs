@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // 별도 앱(문법의 숲) — 자체 설정으로 검사
+    "munbeop-forest/**",
   ]),
 ]);
 
